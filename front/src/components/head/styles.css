@@ -1,37 +1,96 @@
-.container_head{
+/* Remover margens e paddings do body e html */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Container do header */
+.container_head {
+    width: 100%;
+    background: linear-gradient(90deg, #6a1b9a, #ab47bc);
+    padding: 15px 50px;
     display: flex;
-    background-color: black;
-    color: #eeeeee;
-    width: 100vw;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: fixed;
-    border-radius: 5px;
-    padding: 0px;
     top: 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    left: 0;
+    z-index: 1000;
 }
 
-.nav{
-    display: flex;
-    width: 27%;
-    min-width: 350px;
-    height: 100px;
-    align-items: center;
-    justify-content: space-around;
+/* Título */
+.title h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
 }
 
-.title{
+/* Navegação */
+.nav {
     display: flex;
-    width: 27%;
-    min-width: 350px;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
+    gap: 20px;
 }
 
-.main{
-    display: flex;
-    justify-content: center;
-    width: 100vw;
+.nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
 }
+
+/* Efeito de hover para os links */
+.nav a:hover {
+    background-color: #9c27b0;
+    transform: scale(1.1);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .container_head {
+        padding: 10px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .nav a {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+/* Adicionar margem superior ao conteúdo para não ficar escondido atrás do header fixo */
+.main {
+    padding-top: 50px; /* Ajuste de acordo com a altura do seu header */
+}
+
+.logout-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .logout-button:hover {
+    background-color: darkred;
+  }
+  

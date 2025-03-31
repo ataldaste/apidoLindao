@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import "./styles.css"
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {FaUser} from 'react-icons/fa'
+
 
 export default function Login(){
   const [user, setUser] = useState('')
@@ -49,7 +50,8 @@ export default function Login(){
       <button className="btn" onClick={logar}>
         Enter
       </button>
-
+      <p className="link-text"> Não tenho cadastro? <Link to="/cadastrar">Criar conta</Link>
+      </p>
     </div>
   )
 }

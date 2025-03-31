@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ModalTurmas from "../../components/modalTurmas/index.jsx";
+import ModalCurso from "../../components/modalCurso/index.jsx";
 import { FaEdit, FaTrash, FaPlus, FaSearch } from "react-icons/fa";
-import "./turmas.css";
+import "./cursos.css";
 import Head from "../../components/head/index.jsx";
 import Footer from "../../components/footer/index.jsx";
 
-export default function Turmas() {
+export default function Cursos() {
     const [dados, setDados] = useState([]);
     const [dadosFiltrados, setDadosFiltrados] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
-    const [turmaSelecionada, setTurmaSelecionada] = useState(null);
+    const [cursoSelecionado, setCursoSelecionado] = useState(null);
     const [texto, setTexto] = useState("");
     const [reload, setReload] = useState(false);
 
@@ -24,8 +24,8 @@ export default function Turmas() {
 
         const fetchData = async () => {
             try {
-                console.log("Buscando turmas...");
-                const response = await axios.get("http://127.0.0.1:8000/api/turmas", {
+                console.log("Buscando cursos...");
+                const response = await axios.get("http://127.0.0.1:8000/api/cursos", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 console.log("Dados recebidos:", response.data);
@@ -39,14 +39,14 @@ export default function Turmas() {
         fetchData();
     }, [reload, token]);
 
-    const criar = async (novaTurma) => {
-        if (!novaTurma || !novaTurma.codigoTurma) {
+    const criar = async (novoCurso) => {
+        if (!novoCurso || !novoCurso.codigoCurso) {
             alert("Preencha todos os campos!");
             return;
         }
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/turmas", novaTurma, {
+            const response = await axios.post("http://127.0.0.1:8000/api/cursos", novoCurso, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -59,14 +59,14 @@ export default function Turmas() {
         }
     };
 
-    const editar = async (turma) => {
-        if (!turma || !turma.codigoTurma) {
+    const editar = async (curso) => {
+        if (!curso || !curso.codigoCurso) {
             alert("Preencha todos os campos!");
             return;
         }
 
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/api/turmas/${turma.id}`, turma, {
+            const response = await axios.put(`http://127.0.0.1:8000/api/cursos/${curso.id}`, curso, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -80,14 +80,14 @@ export default function Turmas() {
     };
 
     const apagar = async (id) => {
-        if (window.confirm("Tem certeza que deseja apagar esta turma?")) {
+        if (window.confirm("Tem certeza que deseja apagar este curso?")) {
             try {
-                await axios.delete(`http://127.0.0.1:8000/api/turmas/${id}`, {
+                await axios.delete(`http://127.0.0.1:8000/api/cursos/${id}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setReload(!reload);
             } catch (error) {
-                console.error("Erro ao excluir turma:", error.response?.data || error.message);
+                console.error("Erro ao excluir curso:", error.response?.data || error.message);
             }
         }
     };
@@ -97,17 +97,16 @@ export default function Turmas() {
             setDadosFiltrados(dados);
             return;
         }
-    
-        const resultado = dados.filter((turma) => {
-            const codigo = turma.codigoTurma ? String(turma.codigoTurma).toLowerCase() : "";
-            const numeroTurma = turma.turma !== null ? String(turma.turma).toLowerCase() : "";
-    
-            return codigo.includes(texto.toLowerCase()) || numeroTurma.includes(texto.toLowerCase());
+
+        const resultado = dados.filter((curso) => {
+            const codigo = curso.codigoCurso ? String(curso.codigoCurso).toLowerCase() : "";
+            const nomeCurso = curso.curso !== null ? curso.curso.toLowerCase() : "";
+
+            return codigo.includes(texto.toLowerCase()) || nomeCurso.includes(texto.toLowerCase());
         });
-    
+
         setDadosFiltrados(resultado);
     };
-    
 
     return (
         <main className="main">
@@ -116,30 +115,39 @@ export default function Turmas() {
                 <section className="section">
                     <div className="table">
                         {dadosFiltrados.length > 0 ? (
-                            dadosFiltrados.map((turma) => (
-                                <div key={turma.id} className="lista">
+                            dadosFiltrados.map((curso) => (
+                                <div key={curso.id} className="lista">
                                     <div className="col1">
                                         <FaEdit
                                             className="edit"
                                             onClick={() => {
-                                                setTurmaSelecionada(turma);
+                                                setCursoSelecionado(curso);
                                                 setModalOpen(true);
                                             }}
                                         />
                                     </div>
                                     <div className="col2">
-                                        <FaTrash className="delete" onClick={() => apagar(turma.id)} />
+                                        <FaTrash className="delete" onClick={() => apagar(curso.id)} />
                                     </div>
                                     <div className="col3">
-                                        <span className="codigo">{turma.codigoTurma}</span>
+                                        <span className="codigo">{curso.codigoCurso}</span>
                                     </div>
                                     <div className="col4">
-                                        <span className="nome">{turma.turma}</span>
+                                        <span className="nome">{curso.curso}</span>
+                                    </div>
+                                    <div className="col5">
+                                        <span className="tipo">{curso.tipo}</span>
+                                    </div>
+                                    <div className="col6">
+                                        <span className="ha">{curso.ha}</span>
+                                    </div>
+                                    <div className="col7">
+                                        <span className="sigla">{curso.sigla}</span>
                                     </div>
                                 </div>
                             ))
                         ) : (
-                            <p>Nenhuma turma encontrada.</p>
+                            <p>Nenhum curso encontrado.</p>
                         )}
                     </div>
 
@@ -148,14 +156,14 @@ export default function Turmas() {
                             <FaPlus
                                 className="adicionar"
                                 onClick={() => {
-                                    setTurmaSelecionada(null);
+                                    setCursoSelecionado(null);
                                     setModalOpen(true);
                                 }}
                             />
                         </div>
                         <div className="pesquisar">
                             <input
-                                placeholder="Nome da turma"
+                                placeholder="Pesquisar curso"
                                 value={texto}
                                 onChange={(e) => setTexto(e.target.value)}
                             />
@@ -168,11 +176,11 @@ export default function Turmas() {
                 <Footer />
             </div>
 
-            {/* Modal para Criar/Editar Turma */}
-            <ModalTurmas
+            {/* Modal para Criar/Editar Curso */}
+            <ModalCurso
                 isOpen={modalOpen}
                 onClose={() => setModalOpen(false)}
-                turmaSelecionada={turmaSelecionada}
+                cursoSelecionado={cursoSelecionado}
                 onCriar={criar}
                 onEditar={editar}
             />

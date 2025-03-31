@@ -6,6 +6,8 @@ import Env from "./pages/environments";
 import Ambientes from "./pages/ambientes";
 import Disciplinas from "./pages/disciplinas";
 import Turmas from "./pages/turmas";
+import Cursos from "./pages/cursos";
+import SignUp from "./pages/cadastrar";
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
         <Route path="/disciplinas" element={<Disciplinas/>} />
         <Route path= "/ambientes" element={<Ambientes/>} />
         <Route path="/turmas" element={<Turmas/>} />
+        <Route path="/cursos" element={<Cursos/>} />
+        <Route path="/cadastrar" element={<SignUp/>} />
       </Routes>
     </Router>
   )

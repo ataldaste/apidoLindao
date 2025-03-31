@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import listar_professores, ProfessoresView, ProfessoresDetailView, buscar_nome_professor, ProfessoresSearchView, DisciplinasView, DisciplinasDetailView, AmbienteView, AmbienteDetailView, TurmaView, TurmaDetailView, CursoView, CursoDetailView
+from .views import listar_professores, ProfessoresView, ProfessoresDetailView, buscar_nome_professor, ProfessoresSearchView, DisciplinasView, DisciplinasDetailView, AmbienteView, AmbienteDetailView, TurmaView, TurmaDetailView, CursoView, CursoDetailView, register_user
 from rest_framework_simplejwt.views import (
         TokenObtainPairView,
         TokenRefreshView,
@@ -21,7 +21,8 @@ urlpatterns = [
     path('turmas', TurmaView.as_view()),
     path('turmas/<int:pk>', TurmaDetailView.as_view(), name='turma-detail'),
     path('cursos', CursoView.as_view()),
-    path('cursos/<int:pk>', CursoDetailView.as_view(), name='curso-detail')
+    path('cursos/<int:pk>', CursoDetailView.as_view(), name='curso-detail'),
+    path('register', register_user, name="register")
 
     ]
 
