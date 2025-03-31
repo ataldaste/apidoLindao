@@ -33,8 +33,11 @@ body {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Tabela com rolagem horizontal e vertical */
 .table {
   width: 100%;
+  max-height: 400px; /* Altura máxima para permitir rolagem vertical */
+  overflow: auto; /* Permite rolagem tanto horizontal quanto vertical */
   display: flex;
   flex-direction: column;
   background-color: #fff;
@@ -42,12 +45,12 @@ body {
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  overflow-x: auto; /* Adicionando rolagem horizontal quando necessário */
 }
 
+/* Lista de turmas */
 .lista {
   display: flex;
-  flex-wrap: wrap; /* Permitindo que as colunas se ajustem conforme necessário */
+  flex-wrap: wrap;
   align-items: center;
   background-color: #f9f9f9;
   margin-bottom: 10px;
@@ -61,15 +64,15 @@ body {
   background-color: #e9ecef;
 }
 
+/* Colunas com rolagem horizontal */
 .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8 {
   padding: 10px;
   text-align: left;
-  flex: 1 1 auto; /* Ajusta automaticamente as colunas */
-  min-width: 100px; /* Garante um tamanho mínimo */
+  flex: 1 1 auto;
+  min-width: 100px;
   box-sizing: border-box;
 }
 
-/* Atribuindo cores alternadas para as colunas */
 .col1, .col3, .col5, .col7 {
   background-color: #f2f2f2;
 }
@@ -126,30 +129,30 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-radius: 10px;
   margin-top: 10px;
   padding: 0 15px;
-  align-items: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .pesquisar {
+  width: 100%;  /* Barra de pesquisa ocupa todo o espaço disponível */
   display: flex;
   align-items: center;
-  width: 80%;
 }
 
 .pesquisar input {
-  width: 100%;
+  width: 100%;  /* Preenche todo o espaço disponível */
   padding: 8px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 6px;
+  outline: none;
 }
 
 .pesquisar input:focus {
   border-color: #4CAF50;
-  outline: none;
 }
 
 .btn1, .btn2 {
@@ -175,7 +178,6 @@ body {
 .btn2 {
   background-color: #d4edda;
 }
-  
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -195,8 +197,8 @@ body {
   }
 
   .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8 {
-    width: 100%; 
-    min-width: 100%; 
+    width: 100%;
+    min-width: 100%;
   }
 
   .footer {

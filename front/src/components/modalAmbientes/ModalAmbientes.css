@@ -1,0 +1,69 @@
+/* Estilos gerais do modal */
+.modal-overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     background: rgba(0, 0, 0, 0.5);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 1000;
+   }
+   
+   .modal-container {
+     background: #fff;
+     padding: 20px;
+     border-radius: 10px;
+     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+     width: 90%;
+     max-width: 500px;
+     text-align: center;
+   }
+   
+   .close-button {
+     background: none;
+     border: none;
+     font-size: 20px;
+     position: absolute;
+     top: 10px;
+     right: 15px;
+     cursor: pointer;
+   }
+   
+   .body_modal form {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+   }
+   
+   .nome_modal,
+   .descricao_modal,
+   .capacidade_modal {
+     width: 100%;
+     padding: 10px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     font-size: 16px;
+   }
+   
+   textarea.descricao_modal {
+     resize: none;
+     height: 100px;
+   }
+   
+   button[type='submit'] {
+     background: #28a745;
+     color: #fff;
+     padding: 10px;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 16px;
+     transition: 0.3s;
+   }
+   
+   button[type='submit']:hover {
+     background: #218838;
+   }
